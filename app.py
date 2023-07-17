@@ -42,6 +42,15 @@ def update_dog(dog_id):
             return dog
     return {'errore': 'dog not found'}
 
+#delete a dog
+@app.route('/dogs/<int:dog_id>', methods=['DELETE'])
+def delete_dog(dog_id):
+    for dog in dogs:
+        if dog['id'] == dog_id:
+            dogs.remove(dog)
+            return {'data' : "Dog deleted successfully"}
+    return {'errore': 'dog not found'}
+
 #Run the Flask app
 if __name__ == "__main__":
     app.run(debug=True)
